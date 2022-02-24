@@ -52,7 +52,7 @@
 
         <h4 style="color: white; text-align: center;">New Pagamento:</h4><br>
 
-        <form class="form-inline">
+        <form class="form-inline" method="POST">
             <div class="form-group mb-2">
                 <input type="text" class="form-control" id="inputPassword2" name="desc_pagamento" placeholder="Descrição do Pagamento">
             </div>
