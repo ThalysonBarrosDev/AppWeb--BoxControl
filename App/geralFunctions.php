@@ -9,7 +9,7 @@
     function valorTotalRecebimentoMes() {
 
         global $pdo;
-        $consulta = $pdo->query("SELECT SUM(valor_titulo) AS totalRecebido FROM tb_recebimento WHERE data_titulo >= ".date("01/m/Y")."");
+        $consulta = $pdo->query("SELECT SUM(FORMAT(valor_titulo), 2, 'de_DE') AS totalRecebido FROM tb_recebimento WHERE data_titulo >= ".date("01/m/Y")."");
 
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
             return "{$linha['totalRecebido']}";
