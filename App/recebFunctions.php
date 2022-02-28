@@ -29,3 +29,21 @@
         }
 
     }
+
+    function numeroTitulo() {
+        
+        global $pdo;
+        $consultaOne = $pdo->query("SELECT MAX(num_titulo) AS ultNumTituloRe FROM tb_recebimento");
+        $consultaTwo = $pdo->query("SELECT MAX(num_titulo) AS ultNumTituloPg FROM tb_pagamento");
+
+        while ($linhaOne = $consultaOne->fetch(PDO::FETCH_ASSOC)) {
+            $ultimo_titulo_rece = $linhaOne['ultNumTituloRe'];
+        }
+
+        while ($linhaTwo = $consultaTwo->fetch(PDO::FETCH_ASSOC)) {
+            $ultimo_titulo_paga = $linhaTwo['ultNumTituloPg'];
+        }
+
+        if ($ultimo_titulo_rece > $ultimo_titulo_paga) { return $ultimo_titulo_rece + 1; } else { return $ultimo_titulo_paga + 1; }
+
+    }

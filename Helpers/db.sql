@@ -4,20 +4,46 @@ USE db_boxcontrol;
 
 CREATE TABLE tb_recebimento (
     seq_titulo INTEGER AUTO_INCREMENT NOT NULL,
+    num_titulo INTEGER(50) NOT NULL,
     desc_titulo VARCHAR(50) NOT NULL,
     valor_titulo DECIMAL(10, 2) NOT NULL,
+    tipo_titulo VARCHAR(1) DEFAULT 'R' NOT NULL,
     data_titulo DATE NOT NULL,
+    datahora_alteracao DATETIME NOT NULL,
     PRIMARY KEY (seq_titulo)
 );
-
-INSERT INTO tb_recebimento (desc_titulo, valor_titulo, data_titulo) VALUES ('Conta de Luz', 150.78, '2022-02-23');
 
 CREATE TABLE tb_pagamento (
     seq_titulo INTEGER AUTO_INCREMENT NOT NULL,
+    num_titulo INTEGER(50) NOT NULL,
     desc_titulo VARCHAR(50) NOT NULL,
     valor_titulo DECIMAL(10, 2) NOT NULL,
+    tipo_titulo VARCHAR(1) DEFAULT 'R' NOT NULL,
     data_titulo DATE NOT NULL,
+    datahora_alteracao DATETIME NOT NULL,
     PRIMARY KEY (seq_titulo)
 );
 
-INSERT INTO tb_pagamento (desc_titulo, valor_titulo, data_titulo) VALUES ('Conta de Luz', 100, '2022-02-01');
+/* View de Pagamentos */
+CREATE VIEW titulo_consultarpagamentos AS
+SELECT seq_titulo,
+	   num_titulo AS numeroTitulo,
+	   desc_titulo AS descricaoTitulo,
+       FORMAT(valor_titulo, 2, 'de_DE') AS valorTitulo,
+       tipo_titulo AS tipoTitulo,
+       data_titulo AS dataTitulo,
+       datahora_alteracao
+FROM tb_pagamento
+ORDER BY seq_titulo;
+
+/* View de Recebimentos */
+CREATE VIEW titulo_consultarrecebimentos AS
+SELECT seq_titulo,
+	   num_titulo AS numeroTitulo,
+	   desc_titulo AS descricaoTitulo,
+       FORMAT(valor_titulo, 2, 'de_DE') AS valorTitulo,
+       tipo_titulo AS tipoTitulo,
+       data_titulo AS dataTitulo,
+       datahora_alteracao
+FROM tb_recebimento
+ORDER BY seq_titulo;

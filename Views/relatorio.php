@@ -27,11 +27,17 @@
     </header>
 
     <main>
-    
         <h4 style="color: white; text-align: center;">Extração de Relatórios</h4><br>
         <h6 style="color: white; text-align: center;">Informe o periodo do relatório. Exemplo: 01/01/1900 à 31/01/1900 </h6><br><br>
 
-        <form class="form-inline" method="POST">
+        <form class="form-inline" method="POST" action="#">
+            <div class="form-group mb-2">
+                <select class="form-control" id="exampleFormControlSelect1" style="text-align: center;" required>
+                    <option>Tipo de Titulo</option>
+                    <option value="P">Titulos de Pagamento</option>
+                    <option value="R">Titulos de Recebimento</option>
+                </select>
+            </div>
             <div class="form-group mb-2">
                 <input type="date" class="form-control" id="inputPassword2" name="data_inicial" value="<?php echo date("Y-m-01") ?>" required>
             </div>
@@ -40,7 +46,6 @@
             </div>
             <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Extrair Relatório</button>
         </form><br><br><br><br>
-
     </main>
 
     <footer>

@@ -12,10 +12,11 @@
             $despInput = $_POST['desc_pagamento'];
             $vlrInput = $_POST['vlr_pagamento'];
             $dtaInput = $_POST['data_pagamento'];
+            $numTitulo = numeroTitulo();
     
             if ($despInput !== NULL) {
 
-                $sqlInsert = $pdo->prepare("INSERT INTO tb_pagamento (desc_titulo, valor_titulo, data_titulo) VALUES ('".$despInput."', ".$vlrInput.", '".$dtaInput."');");
+                $sqlInsert = $pdo->prepare("INSERT INTO tb_pagamento (num_titulo, desc_titulo, valor_titulo, data_titulo, datahora_alteracao) VALUES ('".$numTitulo."', '".$despInput."', ".$vlrInput.", '".$dtaInput."', NOW());");
                 $sqlInsert->execute();
     
                 if ($sqlInsert->rowCount() > 0) {
