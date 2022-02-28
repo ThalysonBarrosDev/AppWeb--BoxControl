@@ -3,7 +3,9 @@
     require ('../Database/conexao.php');
 
     function periodoAtual() {
+
         echo "".date("01/m/Y")." à ".date("t/m/Y")."";
+        
     }
 
     function valorTotalPagamentosMes() {

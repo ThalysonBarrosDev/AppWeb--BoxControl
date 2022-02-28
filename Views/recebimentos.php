@@ -1,9 +1,9 @@
 <?php require ('../App/recebFunctions.php'); ?>
 <?php require ('../Database/conexao.php'); ?>
 
-<?php 
+<?php
 
-    if (isset($_POST['desc_recebimento']) && isset($_POST['valor_recebimento']) && isset($_POST['data_recebimento'])) { 
+    if (isset($_POST['desc_recebimento']) && isset($_POST['valor_recebimento']) && isset($_POST['data_recebimento'])) {
 
         function insertRecebimento() {
 
@@ -14,22 +14,29 @@
             $dtaInput = $_POST['data_recebimento'];
     
             if ($despInput !== NULL) {
+
                 $sqlInsert = $pdo->prepare("INSERT INTO tb_recebimento (desc_titulo, valor_titulo, data_titulo) VALUES ('".$despInput."', ".$vlrInput.", '".$dtaInput."');");
                 $sqlInsert->execute();
     
                 if ($sqlInsert->rowCount() > 0) {
+
                     $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Recebimento inserido com sucesso!</h6>';
                     echo $retornoInsert;
                     header("refresh: 3; url=recebimentos.php");
+                    
                 } else {
+
                     $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o recebimento. Verifique!</h6>';
                     echo $retornoInsert;
                     header("refresh: 3; url=recebimentos.php");
                 }
+
             } else {
+
                 $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o recebimento. Verifique!</h6>';
                 echo $retornoInsert;
                 header("refresh: 3; url=recebimentos.php");
+
             }
 
         }

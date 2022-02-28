@@ -3,7 +3,7 @@
 
 <?php
     
-    if (isset($_POST['desc_pagamento']) && isset($_POST['vlr_pagamento']) && isset($_POST['data_pagamento'])) { 
+    if (isset($_POST['desc_pagamento']) && isset($_POST['vlr_pagamento']) && isset($_POST['data_pagamento'])) {
 
         function insertPagamento() {
 
@@ -14,22 +14,29 @@
             $dtaInput = $_POST['data_pagamento'];
     
             if ($despInput !== NULL) {
+
                 $sqlInsert = $pdo->prepare("INSERT INTO tb_pagamento (desc_titulo, valor_titulo, data_titulo) VALUES ('".$despInput."', ".$vlrInput.", '".$dtaInput."');");
                 $sqlInsert->execute();
     
                 if ($sqlInsert->rowCount() > 0) {
+
                     $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Pagamento inserido com sucesso!</h6>';
                     echo $retornoInsert;
                     header("refresh: 3; url=pagamentos.php");
+
                 } else {
+
                     $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o pagamento. Verifique!</h6>';
                     echo $retornoInsert;
                     header("refresh: 3; url=pagamentos.php");
+
                 }
             } else {
+
                 $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o pagamento. Verifique!</h6>';
                 echo $retornoInsert;
                 header("refresh: 3; url=pagamentos.php");
+
             }
 
         }
