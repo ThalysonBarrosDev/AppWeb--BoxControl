@@ -21,9 +21,9 @@
 
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <a class="me-3 py-2 text-light text-decoration-none" href="index.php">Home</a>
-                <a class="me-3 py-2 text-light text-decoration-none" href="events/recebimentos.php">Recebimentos</a>
-                <a class="me-3 py-2 text-light text-decoration-none" href="events/pagamentos.php">Pagamentos</a>
-                <a class="me-3 py-2 text-light text-decoration-none" href="events/relatorio.php">Relatórios</a>
+                <a class="me-3 py-2 text-light text-decoration-none" href="views/recebimentos.php">Recebimentos</a>
+                <a class="me-3 py-2 text-light text-decoration-none" href="views/pagamentos.php">Pagamentos</a>
+                <a class="me-3 py-2 text-light text-decoration-none" href="views/relatorio.php">Relatórios</a>
             </nav>
         </div>
     </header>
