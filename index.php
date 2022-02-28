@@ -81,7 +81,7 @@
     </main>
 
     <footer>
-        <div class="text-center p-3 text-light">AlthDevelopment © <?php echo date('Y'); ?></div>
+        <div class="text-center p-3 text-light"><a href="https://www.althdevelopment.com" target="_blank">AlthDevelopment</a> © <?php echo date('Y'); ?></div>
     </footer>
 
     <script src="assets/js/main.js"></script>

@@ -61,7 +61,7 @@
     
     <header>
         <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom bg-dark">
-            <a href="index.php" class="d-flex align-items-center text-light text-decoration-none">
+            <a href="../index.php" class="d-flex align-items-center text-light text-decoration-none">
                 <span class="fs-4">BoxControl</span>
             </a>
 
@@ -96,13 +96,13 @@
 
         <form class="form-inline" method="POST">
             <div class="form-group mb-2">
-                <input type="text" class="form-control" id="inputPassword2" name="desc_recebimento" placeholder="Descrição do Recebimento" required>
+                <input type="text" class="form-control" name="desc_recebimento" placeholder="Descrição do Recebimento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="text" class="form-control" id="inputPassword2" name="valor_recebimento" placeholder="Valor do Recebimento" required>
+                <input type="text" class="form-control" name="valor_recebimento" placeholder="Valor do Recebimento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="date" class="form-control" id="inputPassword2" name="data_recebimento" value="<?php echo date("Y-m-d") ?>" required>
+                <input type="date" class="form-control" name="data_recebimento" value="<?php echo date("Y-m-d") ?>" required>
             </div>
             <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Inserir Recebimento</button>
         </form><br>
@@ -113,7 +113,7 @@
     </main>
 
     <footer>
-        <div class="text-center p-3 text-light">AlthDevelopment © <?php echo date('Y'); ?></div>
+        <div class="text-center p-3 text-light"><a href="https://www.althdevelopment.com" target="_blank">AlthDevelopment</a> © <?php echo date('Y'); ?></div>
     </footer>
 
     <script src="../assets/js/main.js"></script>

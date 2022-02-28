@@ -13,7 +13,7 @@
     
     <header>
         <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom bg-dark">
-            <a href="index.php" class="d-flex align-items-center text-light text-decoration-none">
+            <a href="../index.php" class="d-flex align-items-center text-light text-decoration-none">
                 <span class="fs-4">BoxControl</span>
             </a>
 
@@ -39,17 +39,17 @@
                 </select>
             </div>
             <div class="form-group mb-2">
-                <input type="date" class="form-control" id="inputPassword2" name="data_inicial" value="<?php echo date("Y-m-01") ?>" required>
+                <input type="date" class="form-control" name="data_inicial" value="<?php echo date("Y-m-01") ?>" required>
             </div>
             <div class="form-group mb-2">
-                <input type="date" class="form-control" id="inputPassword2" name="data_final" value="<?php echo date("Y-m-t") ?>" required>
+                <input type="date" class="form-control" name="data_final" value="<?php echo date("Y-m-t") ?>" required>
             </div>
             <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Extrair Relatório</button>
         </form><br><br><br><br>
     </main>
 
     <footer>
-        <div class="text-center p-3 text-light">AlthDevelopment © <?php echo date('Y'); ?></div>
+        <div class="text-center p-3 text-light"><a href="https://www.althdevelopment.com" target="_blank">AlthDevelopment</a> © <?php echo date('Y'); ?></div>
     </footer>
 
     <script src="../assets/js/main.js"></script>
