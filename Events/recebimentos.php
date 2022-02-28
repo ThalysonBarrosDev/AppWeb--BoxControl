@@ -1,39 +1,41 @@
-<?php require '../App/recebFunctions.php'; ?>
+<?php require ('../App/recebFunctions.php'); ?>
+<?php require ('../Database/conexao.php'); ?>
 
 <?php 
 
-    if (isset($_POST['desc_despesa'])) { 
+    if (isset($_POST['desc_recebimento']) && isset($_POST['valor_recebimento']) && isset($_POST['data_recebimento'])) { 
 
         function insertRecebimento() {
 
-            require '../Database/conexao.php';
+            global $pdo;
 
-            $despInput = $_POST['desc_despesa'];
-            $vlrInput = $_POST['valor_despesa'];
-            $dtaInput = $_POST['data_despesa'];
+            $despInput = $_POST['desc_recebimento'];
+            $vlrInput = $_POST['valor_recebimento'];
+            $dtaInput = $_POST['data_recebimento'];
     
             if ($despInput !== NULL) {
                 $sqlInsert = $pdo->prepare("INSERT INTO tb_recebimento (desc_titulo, valor_titulo, data_titulo) VALUES ('".$despInput."', ".$vlrInput.", '".$dtaInput."');");
                 $sqlInsert->execute();
     
                 if ($sqlInsert->rowCount() > 0) {
-                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Rebimento inserido com sucesso!</h6>';
+                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Recebimento inserido com sucesso!</h6>';
                     echo $retornoInsert;
-                    header("refresh: 4; url=recebimentos.php");
+                    header("refresh: 3; url=recebimentos.php");
                 } else {
                     $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o recebimento. Verifique!</h6>';
                     echo $retornoInsert;
-                    header("refresh: 4; url=recebimentos.php");
+                    header("refresh: 3; url=recebimentos.php");
                 }
             } else {
                 $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o recebimento. Verifique!</h6>';
                 echo $retornoInsert;
-                header("refresh: 4; url=recebimentos.php");
+                header("refresh: 3; url=recebimentos.php");
             }
 
         }
 
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +59,7 @@
 
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <a class="me-3 py-2 text-light text-decoration-none" href="../index.php">Home</a>
-                <a class="me-3 py-2 text-light text-decoration-none" href="recebimentos.php">Recebimento</a>
+                <a class="me-3 py-2 text-light text-decoration-none" href="recebimentos.php">Recebimentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="pagamentos.php">Pagamentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="relatorio.php">Relatórios</a>
             </nav>
@@ -86,19 +88,19 @@
 
         <form class="form-inline" method="POST">
             <div class="form-group mb-2">
-                <input type="text" class="form-control" id="inputPassword2" name="desc_despesa" placeholder="Descrição da Despesa" required>
+                <input type="text" class="form-control" id="inputPassword2" name="desc_recebimento" placeholder="Descrição do Recebimento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="text" class="form-control" id="inputPassword2" name="valor_despesa" placeholder="Valor da Despesa" required>
+                <input type="text" class="form-control" id="inputPassword2" name="valor_recebimento" placeholder="Valor do Recebimento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="date" class="form-control" id="inputPassword2" name="data_despesa" required>
+                <input type="date" class="form-control" id="inputPassword2" name="data_recebimento" value="<?php echo date("Y-m-d") ?>" required>
             </div>
-            <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Inserir Despesa</button>
+            <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Inserir Recebimento</button>
         </form><br>
 
         <div class="retorno">
-            <?php if (isset($_POST['desc_despesa'])) { echo insertRecebimento(); } ?>
+            <?php if (isset($_POST['desc_recebimento']) && isset($_POST['valor_recebimento']) && isset($_POST['data_recebimento'])) { echo insertRecebimento(); } ?>
         </div>
     </main>
 

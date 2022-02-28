@@ -1,6 +1,40 @@
-<?php require '../App/pagamFunctions.php'; ?>
+<?php require ('../App/pagamFunctions.php'); ?>
+<?php require ('../Database/conexao.php'); ?>
 
 <?php
+    
+    if (isset($_POST['desc_pagamento']) && isset($_POST['vlr_pagamento']) && isset($_POST['data_pagamento'])) { 
+
+        function insertPagamento() {
+
+            global $pdo;
+
+            $despInput = $_POST['desc_pagamento'];
+            $vlrInput = $_POST['vlr_pagamento'];
+            $dtaInput = $_POST['data_pagamento'];
+    
+            if ($despInput !== NULL) {
+                $sqlInsert = $pdo->prepare("INSERT INTO tb_pagamento (desc_titulo, valor_titulo, data_titulo) VALUES ('".$despInput."', ".$vlrInput.", '".$dtaInput."');");
+                $sqlInsert->execute();
+    
+                if ($sqlInsert->rowCount() > 0) {
+                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Pagamento inserido com sucesso!</h6>';
+                    echo $retornoInsert;
+                    header("refresh: 3; url=pagamentos.php");
+                } else {
+                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o pagamento. Verifique!</h6>';
+                    echo $retornoInsert;
+                    header("refresh: 3; url=pagamentos.php");
+                }
+            } else {
+                $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o pagamento. Verifique!</h6>';
+                echo $retornoInsert;
+                header("refresh: 3; url=pagamentos.php");
+            }
+
+        }
+
+    }   
 
 ?>
 
@@ -25,7 +59,7 @@
 
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <a class="me-3 py-2 text-light text-decoration-none" href="../index.php">Home</a>
-                <a class="me-3 py-2 text-light text-decoration-none" href="recebimentos.php">Recebimento</a>
+                <a class="me-3 py-2 text-light text-decoration-none" href="recebimentos.php">Recebimentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="pagamentos.php">Pagamentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="relatorio.php">Relatórios</a>
             </nav>
@@ -54,16 +88,20 @@
 
         <form class="form-inline" method="POST">
             <div class="form-group mb-2">
-                <input type="text" class="form-control" id="inputPassword2" name="desc_pagamento" placeholder="Descrição do Pagamento">
+                <input type="text" class="form-control" id="inputPassword2" name="desc_pagamento" placeholder="Descrição do Pagamento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="text" class="form-control" id="inputPassword2" name="vlr_pagamento" placeholder="Valor do Pagamento">
+                <input type="text" class="form-control" id="inputPassword2" name="vlr_pagamento" placeholder="Valor do Pagamento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="date" class="form-control" id="inputPassword2" name="data_pagamento" placeholder="Data do Pagamento">
+                <input type="date" class="form-control" id="inputPassword2" name="data_pagamento" value="<?php echo date("Y-m-d") ?>" required>
             </div>
             <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Inserir Pagamento</button>
         </form><br>
+
+        <div class="retorno">
+            <?php if (isset($_POST['desc_pagamento']) && isset($_POST['vlr_pagamento']) && isset($_POST['data_pagamento'])) { echo insertPagamento(); } ?>
+        </div>
     </main>
 
     <footer>

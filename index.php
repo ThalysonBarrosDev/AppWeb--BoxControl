@@ -1,4 +1,4 @@
-<?php require 'App/geralFunctions.php'; ?>
+<?php require ('App/geralFunctions.php'); ?>
 
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -21,7 +21,7 @@
 
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <a class="me-3 py-2 text-light text-decoration-none" href="index.php">Home</a>
-                <a class="me-3 py-2 text-light text-decoration-none" href="events/recebimentos.php">Recebimento</a>
+                <a class="me-3 py-2 text-light text-decoration-none" href="events/recebimentos.php">Recebimentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="events/pagamentos.php">Pagamentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="events/relatorio.php">Relatórios</a>
             </nav>
@@ -39,8 +39,8 @@
                         <h1 class="card-title pricing-card-title <?php if (valorTotalRecebimentoMes() > valorTotalPagamentosMes()) { echo "text-success"; } elseif (valorTotalRecebimentoMes() < valorTotalPagamentosMes()) { echo "text-danger"; } ?>">R$ <?= valorTotalMes() ?></h1>
                         <ul class="list-unstyled mt-1 mb-1">
                             <li>Transações (Mês): <?= totalTransacoesMes() ?></li>
-                            <li>Maior Titulo: R$ 465,00</li>
-                            <li>Menor Titulo: R$ 29,99</li>
+                            <li>Maior Titulo: R$ <?= maiorTitulo() ?></li>
+                            <li>Menor Titulo: R$ <?= menorTitulo() ?></li>
                             <li>Periodo: <?= periodoAtual() ?></li>
                         </ul>
                     </div>

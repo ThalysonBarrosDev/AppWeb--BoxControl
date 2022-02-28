@@ -1,12 +1,14 @@
 <?php
 
+    include ('Database/conexao.php');
+
     function periodoAtual() {
         echo "".date("01/m/Y")." à ".date("t/m/Y")."";
     }
 
     function valorTotalRecebimentoMes() {
-        
-        require 'Database/conexao.php';
+
+        global $pdo;
         $consulta = $pdo->query("SELECT SUM(valor_titulo) AS totalRecebido FROM tb_recebimento WHERE data_titulo >= ".date("01/m/Y")."");
 
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -17,7 +19,7 @@
 
     function totalRecebimentosMes() {
 
-        require 'Database/conexao.php';
+        global $pdo;
         $consulta = $pdo->query("SELECT COUNT(seq_titulo) AS totalTitulosMes FROM tb_recebimento WHERE data_titulo >= ".date("01/m/Y")."");
 
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -28,7 +30,7 @@
 
     function valorTotalPagamentosMes() {
 
-        require 'Database/conexao.php';
+        global $pdo;
         $consulta = $pdo->query("SELECT SUM(valor_titulo) AS totalPago FROM tb_pagamento WHERE data_titulo >= ".date("01/m/Y")."");
 
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -39,7 +41,7 @@
     
     function totalPagamentosMes() {
 
-        require 'Database/conexao.php';
+        global $pdo;
         $consulta = $pdo->query("SELECT COUNT(seq_titulo) AS totalTitulosMes FROM tb_pagamento WHERE data_titulo >= ".date("01/m/Y")."");
 
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -52,17 +54,52 @@
 
         $total_recebido = valorTotalRecebimentoMes();
         $total_pago = valorTotalPagamentosMes();
-        $total_geral = $total_recebido - $total_pago;
 
-        return $total_geral;
+        return $total_recebido - $total_pago;
     }
 
     function totalTransacoesMes() {
 
         $totalTitulos_recebido = totalRecebimentosMes();
         $totalTitulos_pagos = totalPagamentosMes();
-        $totalTitulosGeral = (int) $totalTitulos_recebido + (int) $totalTitulos_pagos;
 
-        return $totalTitulosGeral;
+        return (int) $totalTitulos_recebido + (int) $totalTitulos_pagos;
+
+    }
+
+    function maiorTitulo() {
+
+        global $pdo;
+        $consultaOne = $pdo->query("SELECT MAX(valor_titulo) AS maiorValorMesPg FROM tb_pagamento WHERE data_titulo >= ".date("Y-m-01")."");
+        $consultaTwo = $pdo->query("SELECT MAX(valor_titulo) AS maiorValorMesRe FROM tb_recebimento WHERE data_titulo >= ".date("Y-m-01")."");
+
+        while ($linhaOne = $consultaOne->fetch(PDO::FETCH_ASSOC)) {
+            $maiorValorMesPg = $linhaOne['maiorValorMesPg'];
+        }
+
+        while ($linhaTwo = $consultaTwo->fetch(PDO::FETCH_ASSOC)) {
+            $maiorValorMesRe = $linhaTwo['maiorValorMesRe'];
+        }
+
+        if ($maiorValorMesRe > $maiorValorMesPg) { return $maiorValorMesRe; } else { return $maiorValorMesPg; }
+
+    }
+
+    
+    function menorTitulo() {
+
+        global $pdo;
+        $consultaOne = $pdo->query("SELECT MIN(valor_titulo) AS menorValorMesPg FROM tb_pagamento WHERE data_titulo >= ".date("Y-m-01")."");
+        $consultaTwo = $pdo->query("SELECT MIN(valor_titulo) AS menorValorMesRe FROM tb_recebimento WHERE data_titulo >= ".date("Y-m-01")."");
+
+        while ($linhaOne = $consultaOne->fetch(PDO::FETCH_ASSOC)) {
+            $menorValorMesPg = $linhaOne['menorValorMesPg'];
+        }
+
+        while ($linhaTwo = $consultaTwo->fetch(PDO::FETCH_ASSOC)) {
+            $menorValorMesRe = $linhaTwo['menorValorMesRe'];
+        }
+
+        if ($menorValorMesRe < $menorValorMesPg) { return $menorValorMesRe; } else { return $menorValorMesPg; }
 
     }
