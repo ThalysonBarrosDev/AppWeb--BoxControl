@@ -54,19 +54,13 @@
 
     function valorTotalMes() {
 
-        $total_recebido = valorTotalRecebimentoMes();
-        $total_pago = valorTotalPagamentosMes();
-
-        return $total_recebido - $total_pago;
+        return valorTotalRecebimentoMes() - valorTotalPagamentosMes();
         
     }
 
     function totalTransacoesMes() {
 
-        $totalTitulos_recebido = totalRecebimentosMes();
-        $totalTitulos_pagos = totalPagamentosMes();
-
-        return (int) $totalTitulos_recebido + (int) $totalTitulos_pagos;
+        return (int) totalRecebimentosMes() + (int) totalPagamentosMes();
 
     }
 
