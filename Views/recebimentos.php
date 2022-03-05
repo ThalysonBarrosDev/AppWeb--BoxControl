@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <h4 style="color: white; text-align: center;">New Despesa:</h4><br>
+        <h4 style="color: white; text-align: center;">New Recebimento:</h4><br>
 
         <form class="form-inline" method="POST">
             <div class="form-group mb-2">

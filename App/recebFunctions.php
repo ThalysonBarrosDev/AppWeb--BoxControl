@@ -9,12 +9,14 @@
     }
 
     function valorTotalRecebimentoMes() {
-        
+
         global $pdo;
-        $consulta = $pdo->query("SELECT SUM(valor_titulo) AS totalRecebido FROM tb_recebimento WHERE data_titulo >= ".date("01/m/Y")."");
+        $consulta = $pdo->query("SELECT SUM(valor_titulo) AS totalRecebido FROM tb_recebimento WHERE data_titulo >= '".date('Y-m-01')."' AND data_titulo <= '".date('Y-m-t')."'");
 
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            return "{$linha['totalRecebido']}";
+
+            if ($linha['totalRecebido'] === NULL) { return 0; } else { return "{$linha['totalRecebido']}"; }
+
         }
 
     }
@@ -22,10 +24,12 @@
     function totalRecebimentosMes() {
 
         global $pdo;
-        $consulta = $pdo->query("SELECT COUNT(seq_titulo) AS totalTitulosMes FROM tb_recebimento WHERE data_titulo >= ".date("01/m/Y")."");
+        $consulta = $pdo->query("SELECT COUNT(seq_titulo) AS totalTitulosMes FROM tb_recebimento WHERE data_titulo >= '".date('Y-m-01')."' AND data_titulo <= '".date('Y-m-t')."'");
 
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            return "{$linha['totalTitulosMes']}<br/>";
+
+            if ($linha['totalTitulosMes'] === NULL) { return 0; } else { return "{$linha['totalTitulosMes']}<br/>"; }
+
         }
 
     }

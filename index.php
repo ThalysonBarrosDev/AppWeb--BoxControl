@@ -41,7 +41,7 @@
                             <li>Transações (Mês): <?= totalTransacoesMes() ?></li>
                             <li>Maior Titulo: R$ <?= maiorTitulo() ?></li>
                             <li>Menor Titulo: R$ <?= menorTitulo() ?></li>
-                            <li>Periodo: <?= periodoAtual() ?></li>
+                            <li><button class="alterar-periodo" type="button">⬅️</button>&nbsp;&nbsp;Periodo: <?= periodoAtual() ?>&nbsp;&nbsp;<button class="alterar-periodo" type="button">➡️</button></li>
                         </ul>
                     </div>
                 </div>
