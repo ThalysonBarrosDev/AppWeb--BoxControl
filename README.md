@@ -1,6 +1,6 @@
 # Aplicação Web - BoxControl
 
-- Sistema Web básico para recebimentos e pagamentos financeiras.
+- Sistema básico para recebimentos e pagamentos financeiras.
 - Aplicação desenvolvida com PHP, JavaScript, MySQL, PDO, HTML5, CSS3 e Bootstrap.
 
 - Funcionalidades:
