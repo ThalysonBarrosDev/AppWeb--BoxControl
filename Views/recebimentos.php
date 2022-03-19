@@ -1,5 +1,4 @@
-<?php require ('../App/recebFunctions.php'); ?>
-<?php require ('../Database/conexao.php'); ?>
+<?php require ('../App/Service/recebFunctions.php'); ?>
 
 <?php
 

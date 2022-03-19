@@ -1,4 +1,4 @@
-<?php require ('App/geralFunctions.php'); ?>
+<?php require ('App/Service/geralFunctions.php'); ?>
 
 <!DOCTYPE html>
 <html lang="PT-BR">
