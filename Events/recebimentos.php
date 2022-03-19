@@ -74,6 +74,7 @@
                 <a class="me-3 py-2 text-light text-decoration-none" href="pagamentos.php">Pagamentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="relatorio.php">Relatórios</a>
                 <label class="mr-3 text-light" style="margin-top: 8px; margin-left: 5px;"><?php echo '|&nbsp;&nbsp; Olá, '. $nameLogged ?></label>
+                <a class="btn btn-outline-primary my-2 my-sm-0" style="margin-left: 15px;" href="../views/logout.php">Sair</a>
             </nav>
         </div>
     </header>
