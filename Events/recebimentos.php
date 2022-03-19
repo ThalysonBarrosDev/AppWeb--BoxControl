@@ -1,48 +1,51 @@
-<?php require ('../App/Service/pagamFunctions.php'); ?>
+<?php 
 
-<?php
-    
-    if (isset($_POST['desc_pagamento']) && isset($_POST['vlr_pagamento']) && isset($_POST['data_pagamento'])) {
+    require ('../App/Service/recebFunctions.php');
+    require ('../App/Service/errorEncode.php');
+    require ('../Views/verifica.php');
 
-        function insertPagamento() {
+    if (isset($_POST['desc_recebimento']) && isset($_POST['valor_recebimento']) && isset($_POST['data_recebimento'])) {
+
+        function insertRecebimento() {
 
             global $pdo;
 
-            $despInput = $_POST['desc_pagamento'];
-            $vlrInput = $_POST['vlr_pagamento'];
-            $dtaInput = $_POST['data_pagamento'];
+            $despInput = $_POST['desc_recebimento'];
+            $vlrInput = $_POST['valor_recebimento'];
+            $dtaInput = $_POST['data_recebimento'];
             $numTitulo = numeroTitulo();
     
             if ($despInput !== NULL) {
 
-                $sqlInsert = $pdo->prepare("INSERT INTO tb_pagamento (num_titulo, desc_titulo, valor_titulo, data_titulo, datahora_alteracao) VALUES ('".$numTitulo."', '".$despInput."', ".$vlrInput.", '".$dtaInput."', NOW());");
+                $sqlInsert = $pdo->prepare("INSERT INTO tb_recebimento (num_titulo, desc_titulo, valor_titulo, data_titulo, datahora_alteracao) VALUES ('".$numTitulo."', '".$despInput."', ".$vlrInput.", '".$dtaInput."', NOW());");
                 $sqlInsert->execute();
     
                 if ($sqlInsert->rowCount() > 0) {
 
-                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Pagamento inserido com sucesso!</h6>';
+                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Recebimento inserido com sucesso!</h6>';
                     echo $retornoInsert;
-                    header("refresh: 3; url=pagamentos.php");
-
+                    header("refresh: 3; url=recebimentos.php");
+                    
                 } else {
 
-                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o pagamento. Verifique!</h6>';
+                    $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o recebimento. Verifique!</h6>';
                     echo $retornoInsert;
-                    header("refresh: 3; url=pagamentos.php");
-
+                    header("refresh: 3; url=recebimentos.php");
                 }
-                
+
             } else {
 
-                $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o pagamento. Verifique!</h6>';
+                $retornoInsert = '<h6 style="color: rgb(255, 255, 255); text-align: center;">Erro ao inserir o recebimento. Verifique!</h6>';
                 echo $retornoInsert;
-                header("refresh: 3; url=pagamentos.php");
+                header("refresh: 3; url=recebimentos.php");
 
             }
 
         }
 
-    }   
+    }
+
+    if (isset($_SESSION['idUserSession']) && !empty($_SESSION['idUserSession'])):
 
 ?>
 
@@ -55,7 +58,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="shortcut icon" href="../assets/img/fluxo-de-caixa.png" type="image/x-icon">
-    <title>BoxControl - Pagamentos</title>
+    <title>BoxControl - Recebimentos</title>
 </head>
 <body class="bg-dark">
     
@@ -70,6 +73,7 @@
                 <a class="me-3 py-2 text-light text-decoration-none" href="recebimentos.php">Recebimentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="pagamentos.php">Pagamentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="relatorio.php">Relatórios</a>
+                <label class="mr-3 text-light" style="margin-top: 8px; margin-left: 5px;"><?php echo '|&nbsp;&nbsp; Olá, '. $nameLogged ?></label>
             </nav>
         </div>
     </header>
@@ -79,12 +83,12 @@
             <div class="col">
                 <div class="card mb-4 rounded-3 shadow-sm">
                     <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Pagamentos</h4>
+                        <h4 class="my-0 fw-normal">Recebimentos</h4>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title text-danger">R$ <?= valorTotalPagamentosMes() ?></h1>
+                        <h1 class="card-title pricing-card-title text-success">R$ <?= valorTotalRecebimentoMes() ?></h1>
                         <ul class="list-unstyled mt-2 mb-3">
-                            <li>Titulos (Mês): <?= totalPagamentosMes() ?></li>
+                            <li>Titulos (Mês): <?= totalRecebimentosMes() ?></li>
                             <li>Periodo: <?= periodoAtual() ?></li>
                         </ul>
                     </div>
@@ -92,23 +96,23 @@
             </div>
         </div>
 
-        <h4 style="color: white; text-align: center;">New Pagamento:</h4><br>
+        <h4 style="color: white; text-align: center;">New Recebimento:</h4><br>
 
         <form class="form-inline" method="POST">
             <div class="form-group mb-2">
-                <input type="text" class="form-control" name="desc_pagamento" placeholder="Descrição do Pagamento" required>
+                <input type="text" class="form-control" name="desc_recebimento" placeholder="Descrição do Recebimento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="text" class="form-control" name="vlr_pagamento" placeholder="Valor do Pagamento" required>
+                <input type="text" class="form-control" name="valor_recebimento" placeholder="Valor do Recebimento" required>
             </div>
             <div class="form-group mb-2">
-                <input type="date" class="form-control" name="data_pagamento" value="<?php echo date("Y-m-d") ?>" required>
+                <input type="date" class="form-control" name="data_recebimento" value="<?php echo date("Y-m-d") ?>" required>
             </div>
-            <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Inserir Pagamento</button>
+            <br><button type="submit" class="btn btn-primary mb-2 text-center" style="display: block; margin: 0 auto;">Inserir Recebimento</button>
         </form><br>
 
         <div class="retorno">
-            <?php if (isset($_POST['desc_pagamento']) && isset($_POST['vlr_pagamento']) && isset($_POST['data_pagamento'])) { echo insertPagamento(); } ?>
+            <?php if (isset($_POST['desc_recebimento']) && isset($_POST['valor_recebimento']) && isset($_POST['data_recebimento'])) { echo insertRecebimento(); } ?>
         </div>
     </main>
 
@@ -120,3 +124,5 @@
 
 </body>
 </html>
+
+<?php else: header("Location: ../index.php"); endif; ?>

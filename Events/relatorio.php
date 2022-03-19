@@ -1,3 +1,13 @@
+<?php 
+
+    require ('../App/Service/recebFunctions.php');
+    require ('../App/Service/errorEncode.php');
+    require ('../Views/verifica.php');
+
+    if (isset($_SESSION['idUserSession']) && !empty($_SESSION['idUserSession'])):
+
+?>
+
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
@@ -22,6 +32,7 @@
                 <a class="me-3 py-2 text-light text-decoration-none" href="recebimentos.php">Recebimentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="pagamentos.php">Pagamentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="relatorio.php">Relatórios</a>
+                <label class="mr-3 text-light" style="margin-top: 8px; margin-left: 5px;"><?php echo '|&nbsp;&nbsp; Olá, '. $nameLogged ?></label>
             </nav>
         </div>
     </header>
@@ -56,3 +67,5 @@
 
 </body>
 </html>
+
+<?php else: header("Location: ../index.php"); endif; ?>

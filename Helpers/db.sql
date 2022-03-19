@@ -24,6 +24,15 @@ CREATE TABLE tb_pagamento (
     PRIMARY KEY (seq_titulo)
 );
 
+CREATE TABLE tb_usuario (
+	id_usuario SMALLINT AUTO_INCREMENT NOT NULL,
+    nome_usuario VARCHAR(50) NOT NULL,
+    email_usuario VARCHAR(100) NOT NULL,
+    pass_usuario VARCHAR(50) NOT NULL,
+    data_alteracao DATETIME,
+    PRIMARY KEY (id_usuario)
+);
+
 /* View de Pagamentos */
 CREATE VIEW titulo_consultarpagamentos AS
 SELECT seq_titulo,

@@ -15,6 +15,65 @@ main {
     padding: 10px 20px 0px 20px;
 }
 
+.form {
+    width: 400px;
+    margin: auto;
+    padding-top: 40px;
+}
+
+.card {
+    box-shadow: 1px 1px 5px #ccc;
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.card-top {
+    text-align: center;
+}
+
+.imglogin {
+    border-radius: 50px;
+    width: 100px;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.card-group {
+    margin-bottom: 10px;
+}
+
+.card-group > label {
+    width: 100%;
+    color: rgb(75, 75, 75);
+    display: block;
+}
+
+.card-group > input {
+    border-radius: 5px;
+    outline: 0;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.card-group > button {
+    background-color: #212529;
+    width: 100%;
+    border-radius: 30px;
+    padding: 15px;
+    color: white;
+    border: 0px;
+    outline: 0;
+    margin-top: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.btn button:hover {
+    background-image: linear-gradient(to right, #868383, #343a40);
+}
+
 .alterar-periodo {
     border: none;
 }
