@@ -1,6 +1,6 @@
 <?php
 
-    include ('Database/conexao.php');
+    include ('../Database/conexao.php');
 
     function periodoAtual() {
 
