@@ -18,7 +18,7 @@ CREATE TABLE tb_pagamento (
     num_titulo INTEGER(50) NOT NULL,
     desc_titulo VARCHAR(50) NOT NULL,
     valor_titulo DECIMAL(10, 2) NOT NULL,
-    tipo_titulo VARCHAR(1) DEFAULT 'R' NOT NULL,
+    tipo_titulo VARCHAR(1) DEFAULT 'P' NOT NULL,
     data_titulo DATE NOT NULL,
     datahora_alteracao DATETIME NOT NULL,
     PRIMARY KEY (seq_titulo)
