@@ -2,6 +2,8 @@
 
     include ('../Database/conexao.php');
 
+    date_default_timezone_set('America/Sao_Paulo');
+
     function periodoAtual() {
 
         echo "".date("01/m/Y")." à ".date("t/m/Y")."";
