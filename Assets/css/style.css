@@ -78,6 +78,10 @@ main {
     border: none;
 }
 
+.msg-btn {
+    margin-left: 5px;
+}
+
 footer {
     padding: 5px 20px 0px 20px;
     bottom: 0;
