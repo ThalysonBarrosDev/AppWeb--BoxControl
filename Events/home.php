@@ -14,10 +14,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="shortcut icon" href="../assets/img/fluxo-de-caixa.png" type="image/x-icon">
     <title>BoxControl - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <link rel="shortcut icon" href="../Assets/img/fluxo-de-caixa.png" type="image/x-icon">
+    <script src="../Assets/js/main.js"></script>
 </head>
 <body class="bg-dark">
     
@@ -32,7 +33,10 @@
                 <a class="me-3 py-2 text-light text-decoration-none" href="recebimentos.php">Recebimentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="pagamentos.php">Pagamentos</a>
                 <a class="me-3 py-2 text-light text-decoration-none" href="relatorio.php">Relatórios</a>
-                <label class="mr-3 text-light" style="margin-top: 8px; margin-left: 5px;"><?php echo '|&nbsp;&nbsp; Olá, '. $nameLogged ?></label>
+            </nav>
+            
+            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                <label class="mr-3 text-light"><?php echo '&nbsp;&nbsp; Olá, '. $nameLogged ?></label>
                 <a class="btn btn-outline-primary my-2 my-sm-0" style="margin-left: 15px;" href="../views/logout.php">Sair</a>
             </nav>
         </div>
@@ -93,8 +97,6 @@
     <footer>
         <div class="text-center p-3 text-light"><a href="https://www.althdevelopment.com" target="_blank">AlthDevelopment</a> © <?php echo date('Y'); ?></div>
     </footer>
-
-    <script src="../assets/js/main.js"></script>
 
 </body>
 </html>

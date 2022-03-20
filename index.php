@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoxControl - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="Assets/css/style.css">
     <link rel="shortcut icon" href="Assets/img/fluxo-de-caixa.png" type="image/x-icon">
-    <title>BoxControl - Login</title>
+    <script src="Assets/js/main.js"></script>
 </head>
 <body class="bg-dark">
     
@@ -44,8 +45,6 @@
     <footer>
         <div class="text-center p-3 text-light" style="margin-top: 25px;"><a href="https://www.althdevelopment.com" target="_blank">AlthDevelopment</a> © <?php echo date('Y'); ?></div>
     </footer>
-
-    <script src="Assets/js/main.js"></script>
 
 </body>
 </html>
