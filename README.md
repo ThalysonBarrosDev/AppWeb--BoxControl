@@ -9,3 +9,5 @@
     - Lançamento de Recebimentos
     - Lançamento de Pagamentos
     - Extração de Relatórios
+
+- Versão: 2.0.17
