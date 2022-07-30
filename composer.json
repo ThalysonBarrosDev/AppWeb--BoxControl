@@ -1,0 +1,8 @@
+{
+    "name": "aplicacao/boxcontrol",
+    "autoload": {
+        "psr-4": {
+            "App\\":"app"
+        }
+    }
+}
